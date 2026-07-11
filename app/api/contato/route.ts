@@ -25,7 +25,8 @@ export async function POST(request: Request) {
 
   try {
     await createLeadFromSite({ name, email, phone, message, propertySlug })
-  } catch {
+  } catch (error) {
+    console.error(error)
     return Response.json({ error: 'Erro ao registrar contato.' }, { status: 500 })
   }
 
