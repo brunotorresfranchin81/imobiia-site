@@ -97,6 +97,10 @@ export function ContactForm({ propertySlug, submitLabel = 'Enviar mensagem' }: C
       <Button type="submit" disabled={isSubmitting} className="h-11 bg-acao px-6 text-preto hover:bg-acao-hover">
         {isSubmitting ? 'Enviando...' : submitLabel}
       </Button>
+
+      <p className="font-sans text-xs text-texto-suave">
+        Ao enviar, você concorda com o uso dos seus dados para contato comercial.
+      </p>
     </form>
   )
 }

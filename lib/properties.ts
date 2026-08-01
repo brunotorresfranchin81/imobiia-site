@@ -21,6 +21,9 @@ export type Property = {
   description: string | null
   address: string | null
   state: string | null
+  zip_code: string | null
+  condominio_valor: number | null
+  iptu_valor: number | null
   featured: boolean
   property_type: PropertyType
   status: PropertyStatus
@@ -44,6 +47,10 @@ export function formatPropertyTitle(title: string): string {
   return title.replace(/\*\*/g, '').trim()
 }
 
+export function formatPropertyDescription(description: string): string {
+  return description.replace(/\*\*/g, '').trim()
+}
+
 export const getPublishedProperties = unstable_cache(
   async (): Promise<Property[]> => {
     const { data, error } = await supabase
@@ -53,7 +60,8 @@ export const getPublishedProperties = unstable_cache(
         id, title, slug, price, operation_type,
         neighborhood, city, bedrooms, bathrooms,
         suites, parking_spots, area_m2, description,
-        address, state, featured, property_type, status,
+        address, state, zip_code, condominio_valor, iptu_valor,
+        featured, property_type, status,
         property_images ( id, url, is_main, display_order )
       `
       )

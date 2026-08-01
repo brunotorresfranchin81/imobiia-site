@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { BedDouble, Bath, Ruler, Car, Home as HomeIcon } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
-import { formatPropertyTitle, getPropertyBySlug, getPropertyImages } from '@/lib/properties'
+import { formatPropertyDescription, formatPropertyTitle, getPropertyBySlug, getPropertyImages } from '@/lib/properties'
 import { PropertyGallery } from '@/components/property-gallery'
 import { ContactForm } from '@/components/contact-form'
 import { WhatsAppButton } from '@/components/whatsapp-button'
@@ -40,9 +40,20 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
           </p>
           <h1 className="mt-1 font-heading text-3xl text-texto">{title}</h1>
           <p className="mt-1 font-sans text-sm text-texto-suave">
-            {[property.neighborhood, property.city, property.state].filter(Boolean).join(', ')}
+            {[property.address, property.neighborhood, property.city, property.state]
+              .filter(Boolean)
+              .join(', ')}
+            {property.zip_code ? ` — CEP ${property.zip_code}` : ''}
           </p>
           <p className="mt-4 font-heading text-2xl text-texto">{currencyFormatter.format(property.price)}</p>
+          {(property.condominio_valor != null || property.iptu_valor != null) && (
+            <p className="mt-1 font-sans text-sm text-texto-suave">
+              {property.condominio_valor != null &&
+                `Condomínio: ${currencyFormatter.format(property.condominio_valor)}`}
+              {property.condominio_valor != null && property.iptu_valor != null && ' · '}
+              {property.iptu_valor != null && `IPTU: ${currencyFormatter.format(property.iptu_valor)}`}
+            </p>
+          )}
 
           <div className="mt-6 flex flex-wrap gap-6 border-y border-borda py-4 font-sans text-sm text-texto">
             {property.bedrooms != null && (
@@ -78,7 +89,9 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
           </div>
 
           {property.description && (
-            <p className="mt-6 whitespace-pre-line font-sans text-base text-texto-suave">{property.description}</p>
+            <p className="mt-6 whitespace-pre-line font-sans text-base text-texto-suave">
+              {formatPropertyDescription(property.description)}
+            </p>
           )}
 
           <div className="mt-8 rounded-lg border border-borda p-6">

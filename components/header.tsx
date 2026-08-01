@@ -3,6 +3,7 @@ import Link from 'next/link'
 const NAV_ITEMS = [
   { href: '/', label: 'Home' },
   { href: '/imoveis', label: 'Imóveis' },
+  { href: '/anunciar', label: 'Anuncie seu Imóvel' },
   { href: '/sobre', label: 'Sobre' },
   { href: '/contato', label: 'Contato' },
 ]
