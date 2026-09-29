@@ -28,6 +28,7 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
 
   const images = await getPropertyImages(property.id)
   const title = formatPropertyTitle(property.title)
+  const locationLabel = property.city || property.neighborhood || ''
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
@@ -106,7 +107,9 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
         </div>
       </div>
 
-      <WhatsAppButton message={`Tenho interesse no imóvel: ${title}`} />
+      <WhatsAppButton
+        message={`Olá! Tenho interesse no imóvel "${title}"${locationLabel ? ` (${locationLabel})` : ''}. Gostaria de mais informações.`}
+      />
     </div>
   )
 }
