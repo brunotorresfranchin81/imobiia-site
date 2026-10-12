@@ -15,6 +15,10 @@ export function isOrigem(value: unknown): value is Origem {
   return typeof value === 'string' && (ORIGENS as readonly string[]).includes(value)
 }
 
+export function normalizarOrigem(value: unknown): Origem {
+  return isOrigem(value) ? value : 'site'
+}
+
 function normalizarUtm(source: string): Origem | null {
   const s = source.trim().toLowerCase()
   if (s === 'ig' || s === 'instagram') return 'instagram'

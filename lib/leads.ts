@@ -1,6 +1,7 @@
 import 'server-only'
 import { supabaseAdmin } from '@/lib/supabase-admin'
 import { montarNotes } from '@/lib/lead-notes'
+import { normalizarOrigem } from '@/lib/origem'
 
 export type CreateLeadInput = {
   name: string
@@ -19,6 +20,7 @@ export async function createLeadFromSite(input: CreateLeadInput) {
     email: input.email.trim().toLowerCase(),
     phone: input.phone?.trim() || null,
     source: 'site',
+    origem: normalizarOrigem(input.origem),
     status: 'novo',
     company_id: process.env.NEXT_PUBLIC_COMPANY_ID!,
     notes: notes || null,
