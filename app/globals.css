@@ -82,7 +82,7 @@
     --cinza-100: #F1EEEA;
     --cinza-400: #A29E96;
     --cinza-600: #635D54;
-    --header-bg: #070503;
+    --header-bg: #000000; /* igual ao fundo do PNG do logo */
     --header-fg: #FAF8F5;
     --footer-bg: #050402;
     --footer-fg: #F4F1ED;

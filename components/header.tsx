@@ -12,7 +12,7 @@ const NAV_ITEMS = [
 export function Header() {
   return (
     <header className="border-b border-borda-dourada bg-header text-header-foreground">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-4 py-3 sm:px-6 md:flex-row md:justify-between md:py-4">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-4 py-2 sm:px-6 md:flex-row md:justify-between md:py-2">
         <Link href="/" aria-label="Sena Corretor de Imóveis — página inicial" className="shrink-0">
           <Image
             src="/logos/logo-sena-fundo-escuro.png"
@@ -20,7 +20,7 @@ export function Header() {
             width={1024}
             height={1024}
             priority
-            className="h-12 w-auto md:h-14"
+            className="h-28 w-auto md:h-40"
           />
         </Link>
         <nav aria-label="Navegação principal" className="w-full md:w-auto">
