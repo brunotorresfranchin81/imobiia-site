@@ -6,6 +6,8 @@ import { PropertyGallery } from '@/components/property-gallery'
 import { ContactForm } from '@/components/contact-form'
 import { WhatsAppButton } from '@/components/whatsapp-button'
 
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://senacorretor.com.br').replace(/\/+$/, '')
+
 const currencyFormatter = new Intl.NumberFormat('pt-BR', {
   style: 'currency',
   currency: 'BRL',
@@ -29,6 +31,7 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
   const images = await getPropertyImages(property.id)
   const title = formatPropertyTitle(property.title)
   const locationLabel = property.city || property.neighborhood || ''
+  const propertyUrl = `${SITE_URL}/imoveis/${property.slug}`
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
@@ -108,7 +111,7 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
       </div>
 
       <WhatsAppButton
-        message={`Olá! Tenho interesse no imóvel "${title}"${locationLabel ? ` (${locationLabel})` : ''}. Gostaria de mais informações.`}
+        message={`Olá! Tenho interesse no imóvel "${title}"${locationLabel ? ` (${locationLabel})` : ''}.\n${propertyUrl}\nGostaria de mais informações.`}
       />
     </div>
   )
