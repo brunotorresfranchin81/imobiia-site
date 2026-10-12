@@ -39,17 +39,20 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
         <PropertyGallery images={images} title={title} />
 
         <div>
-          <p className="font-sans text-sm uppercase tracking-wide text-acao">
-            {property.operation_type === 'venda' ? 'Venda' : 'Aluguel'}
-          </p>
-          <h1 className="mt-1 font-heading text-3xl text-texto">{title}</h1>
-          <p className="mt-1 font-sans text-sm text-texto-suave">
+          <div className="flex gap-2">
+            <span className="selo bg-header text-dourado-600">
+              {property.operation_type === 'venda' ? 'Venda' : 'Aluguel'}
+            </span>
+            {property.featured && <span className="selo bg-primary text-primary-foreground">Destaque</span>}
+          </div>
+          <h1 className="mt-4 font-heading text-3xl font-semibold leading-tight text-texto sm:text-4xl">{title}</h1>
+          <p className="rotulo mt-3 text-texto-suave">
             {[property.address, property.neighborhood, property.city, property.state]
               .filter(Boolean)
               .join(', ')}
             {property.zip_code ? ` — CEP ${property.zip_code}` : ''}
           </p>
-          <p className="mt-4 font-heading text-2xl text-texto">{currencyFormatter.format(property.price)}</p>
+          <p className="mt-5 font-heading text-3xl font-semibold text-texto">{currencyFormatter.format(property.price)}</p>
           {(property.condominio_valor != null || property.iptu_valor != null) && (
             <p className="mt-1 font-sans text-sm text-texto-suave">
               {property.condominio_valor != null &&
@@ -98,8 +101,8 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
             </p>
           )}
 
-          <div className="mt-8 rounded-lg border border-borda p-6">
-            <h2 className="font-heading text-xl text-texto">Interessado neste imóvel?</h2>
+          <div className="mt-8 rounded-md border border-borda bg-card p-6">
+            <h2 className="font-heading text-xl font-semibold text-texto">Interessado neste imóvel?</h2>
             <p className="mt-1 font-sans text-sm text-texto-suave">
               Preencha o formulário e o corretor entrará em contato.
             </p>

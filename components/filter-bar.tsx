@@ -22,7 +22,7 @@ export function FilterBar({
         <select
           value={filters.operation}
           onChange={(e) => onChange({ ...filters, operation: e.target.value as Filters['operation'] })}
-          className="rounded-md border border-borda bg-branco px-3 py-2 text-sm text-texto"
+          className="rounded-md border border-borda-forte bg-branco px-3 py-2 text-sm text-texto"
         >
           <option value="todos">Todos</option>
           <option value="venda">Venda</option>
@@ -34,7 +34,7 @@ export function FilterBar({
         <select
           value={filters.bedroomsMin}
           onChange={(e) => onChange({ ...filters, bedroomsMin: Number(e.target.value) })}
-          className="rounded-md border border-borda bg-branco px-3 py-2 text-sm text-texto"
+          className="rounded-md border border-borda-forte bg-branco px-3 py-2 text-sm text-texto"
         >
           <option value={0}>Qualquer</option>
           <option value={1}>1+</option>
@@ -48,7 +48,7 @@ export function FilterBar({
         <select
           value={filters.city}
           onChange={(e) => onChange({ ...filters, city: e.target.value })}
-          className="rounded-md border border-borda bg-branco px-3 py-2 text-sm text-texto"
+          className="rounded-md border border-borda-forte bg-branco px-3 py-2 text-sm text-texto"
         >
           <option value="todas">Todas</option>
           {cities.map((city) => (

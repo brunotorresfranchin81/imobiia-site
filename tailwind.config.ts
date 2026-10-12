@@ -32,7 +32,20 @@ const config: Config = {
         dourado: {
           600: "var(--dourado-600)",
           700: "var(--dourado-700)",
+          texto: "var(--dourado-texto)",
         },
+        header: {
+          DEFAULT: "var(--header-bg)",
+          foreground: "var(--header-fg)",
+        },
+        rodape: {
+          DEFAULT: "var(--footer-bg)",
+          foreground: "var(--footer-fg)",
+          suave: "var(--footer-fg-suave)",
+        },
+        whatsapp: "var(--whatsapp)",
+        "borda-forte": "var(--borda-forte)",
+        "borda-dourada": "var(--borda-dourada)",
         cinza: {
           100: "var(--cinza-100)",
           400: "var(--cinza-400)",

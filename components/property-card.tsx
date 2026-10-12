@@ -17,35 +17,37 @@ const OPERATION_LABEL: Record<Property['operation_type'], string> = {
 export function PropertyCard({ property }: { property: Property }) {
   const mainImageUrl = getMainImageUrl(property)
   const title = formatPropertyTitle(property.title)
+  const location = [property.neighborhood, property.city].filter(Boolean).join(' · ')
 
   return (
     <Link
       href={`/imoveis/${property.slug}`}
-      className="group block overflow-hidden rounded-lg border-2 border-preto bg-branco transition-shadow duration-media ease-out-custom hover:shadow-xl"
+      className="group flex flex-col overflow-hidden rounded-md border border-borda bg-card transition-[box-shadow,border-color] duration-media ease-out-custom hover:border-borda-forte hover:shadow-xl"
     >
       <div className="relative">
         <WatermarkImage src={mainImageUrl} alt={title} />
-        <span className="absolute left-3 top-3 rounded-sm bg-preto px-2 py-1 font-sans text-xs font-medium uppercase tracking-wide text-dourado-600">
-          {OPERATION_LABEL[property.operation_type]}
-        </span>
+        <div className="absolute left-3 top-3 flex gap-2">
+          <span className="selo bg-header text-dourado-600">{OPERATION_LABEL[property.operation_type]}</span>
+          {property.featured && <span className="selo bg-primary text-primary-foreground">Destaque</span>}
+        </div>
       </div>
-      <div className="border-t-2 border-preto p-4">
-        <p className="font-heading text-lg text-texto">{currencyFormatter.format(property.price)}</p>
-        <h3 className="mt-1 truncate font-sans text-sm font-medium text-texto">{title}</h3>
-        <p className="mt-1 truncate font-sans text-sm text-texto-suave">
-          {[property.neighborhood, property.city].filter(Boolean).join(', ')}
-        </p>
-        <div className="mt-3 flex items-center gap-4 font-sans text-sm text-texto-suave">
+      <div className="flex flex-1 flex-col p-5">
+        {location && <p className="rotulo truncate text-[11px] text-texto-suave">{location}</p>}
+        <h3 className="mt-2 line-clamp-2 font-heading text-lg font-medium leading-snug text-texto">{title}</h3>
+        <p className="mt-3 font-heading text-2xl font-semibold text-texto">{currencyFormatter.format(property.price)}</p>
+        <div className="mt-4 flex items-center gap-4 border-t border-borda pt-4 font-sans text-sm text-texto-suave">
           {property.bedrooms != null && (
             <span className="flex items-center gap-1">
               <BedDouble className="h-4 w-4" aria-hidden="true" />
               {property.bedrooms}
+              <span className="sr-only">quartos</span>
             </span>
           )}
           {property.bathrooms != null && (
             <span className="flex items-center gap-1">
               <Bath className="h-4 w-4" aria-hidden="true" />
               {property.bathrooms}
+              <span className="sr-only">banheiros</span>
             </span>
           )}
           {property.area_m2 != null && (

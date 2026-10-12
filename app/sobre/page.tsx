@@ -7,7 +7,7 @@ export const metadata = {
 export default function SobrePage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-      <h1 className="font-heading text-3xl text-texto">Sobre a Sena Corretor de Imóveis</h1>
+      <h1 className="font-heading text-3xl font-semibold text-texto sm:text-4xl">Sobre a Sena Corretor de Imóveis</h1>
       <div className="mt-6 flex flex-col gap-4 font-sans text-base text-texto-suave">
         <p>
           A Sena Corretor de Imóveis atua no mercado imobiliário, CRECI 067.623, acompanhando clientes em cada etapa

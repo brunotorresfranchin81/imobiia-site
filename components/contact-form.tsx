@@ -95,7 +95,7 @@ export function ContactForm({ propertySlug, submitLabel = 'Enviar mensagem' }: C
 
       {networkError && <p className="font-sans text-sm text-erro">{networkError}</p>}
 
-      <Button type="submit" disabled={isSubmitting} className="h-11 bg-acao px-6 text-preto hover:bg-acao-hover">
+      <Button type="submit" disabled={isSubmitting} className="h-12 rounded-sm bg-acao px-7 text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground hover:bg-acao-hover">
         {isSubmitting ? 'Enviando...' : submitLabel}
       </Button>
 

@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export function WatermarkImage({ src, alt }: { src: string | null; alt: string }) {
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md bg-cinza-100">
+    <div className="relative aspect-[4/3] w-full overflow-hidden bg-cinza-100">
       {src ? (
         <Image
           src={src}

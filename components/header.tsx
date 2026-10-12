@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 const NAV_ITEMS = [
@@ -10,13 +11,26 @@ const NAV_ITEMS = [
 
 export function Header() {
   return (
-    <header className="border-b border-borda bg-branco">
-      <div className="mx-auto flex max-w-6xl items-center justify-center px-4 py-5 sm:px-6">
-        <nav aria-label="Navegação principal">
-          <ul className="flex items-center gap-6 font-sans text-sm font-medium text-texto">
+    <header className="border-b border-borda-dourada bg-header text-header-foreground">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-4 py-3 sm:px-6 md:flex-row md:justify-between md:py-4">
+        <Link href="/" aria-label="Sena Corretor de Imóveis — página inicial" className="shrink-0">
+          <Image
+            src="/logos/logo-sena-fundo-escuro.png"
+            alt="Sena Corretor de Imóveis"
+            width={1024}
+            height={1024}
+            priority
+            className="h-12 w-auto md:h-14"
+          />
+        </Link>
+        <nav aria-label="Navegação principal" className="w-full md:w-auto">
+          <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1 font-sans text-xs font-medium uppercase tracking-[0.14em] md:gap-x-7">
             {NAV_ITEMS.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="transition-colors duration-rapida hover:text-acao">
+                <Link
+                  href={item.href}
+                  className="inline-flex min-h-11 items-center transition-colors duration-rapida hover:text-dourado-600"
+                >
                   {item.label}
                 </Link>
               </li>

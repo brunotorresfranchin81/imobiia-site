@@ -33,7 +33,7 @@ export function FilterableGrid({ properties }: { properties: Property[] }) {
           <button
             type="button"
             onClick={() => setFilters(DEFAULT_FILTERS)}
-            className="min-h-11 rounded-md border border-borda px-4 py-2 font-sans text-sm text-texto transition-colors duration-rapida hover:border-acao hover:text-acao"
+            className="min-h-11 rounded-md border border-borda px-4 py-2 font-sans text-sm text-texto transition-colors duration-rapida hover:border-borda-forte hover:text-dourado-texto"
           >
             Limpar filtros
           </button>

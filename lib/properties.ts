@@ -43,8 +43,20 @@ export function getMainImageUrl(property: Property): string | null {
   return main?.url ?? null
 }
 
+// Emojis/pictogramas dos títulos cadastrados, incluindo seletores de variação, ZWJ, keycaps e tons de pele.
+// Via RegExp (não literal) porque o tsconfig não define target >= ES2018 para a flag `u` em literal.
+const EMOJI_PATTERN = new RegExp(
+  '[\\p{Extended_Pictographic}\\p{Regional_Indicator}\\u{FE0E}\\u{FE0F}\\u{200D}\\u{20E3}\\u{1F3FB}-\\u{1F3FF}]',
+  'gu'
+)
+
 export function formatPropertyTitle(title: string): string {
-  return title.replace(/\*\*/g, '').trim()
+  return title
+    .replace(/\*\*/g, '')
+    .replace(EMOJI_PATTERN, '')
+    .replace(/\s{2,}/g, ' ')
+    .replace(/^[\s\-–—|·•:]+|[\s\-–—|·•:]+$/g, '')
+    .trim()
 }
 
 export function formatPropertyDescription(description: string): string {

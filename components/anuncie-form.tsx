@@ -97,7 +97,7 @@ export function AnuncieForm() {
           name="propertyType"
           required
           aria-invalid={!!fieldErrors.propertyType}
-          className="rounded-md border border-borda bg-branco px-3 py-2 text-sm text-texto"
+          className="rounded-md border border-borda-forte bg-branco px-3 py-2 text-sm text-texto"
           defaultValue=""
         >
           <option value="" disabled>
@@ -137,7 +137,7 @@ export function AnuncieForm() {
           type="file"
           accept="image/jpeg,image/png,image/webp"
           multiple
-          className="font-sans text-sm text-texto file:mr-3 file:rounded-md file:border-0 file:bg-acao file:px-3 file:py-2 file:text-sm file:font-medium file:text-preto"
+          className="font-sans text-sm text-texto file:mr-3 file:rounded-sm file:border-0 file:bg-acao file:px-3 file:py-2 file:text-sm file:font-medium file:text-preto"
         />
         <p className="font-sans text-xs text-texto-suave">Até 10 fotos — JPG, PNG ou WebP, máx. 5MB cada.</p>
       </div>
@@ -149,7 +149,7 @@ export function AnuncieForm() {
 
       {networkError && <p className="font-sans text-sm text-erro">{networkError}</p>}
 
-      <Button type="submit" disabled={isSubmitting} className="h-11 bg-acao px-6 text-preto hover:bg-acao-hover">
+      <Button type="submit" disabled={isSubmitting} className="h-12 rounded-sm bg-acao px-7 text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground hover:bg-acao-hover">
         {isSubmitting ? 'Enviando...' : 'Enviar imóvel'}
       </Button>
 
