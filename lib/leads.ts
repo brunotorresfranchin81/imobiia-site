@@ -1,5 +1,6 @@
 import 'server-only'
 import { supabaseAdmin } from '@/lib/supabase-admin'
+import { montarNotes } from '@/lib/lead-notes'
 
 export type CreateLeadInput = {
   name: string
@@ -7,12 +8,11 @@ export type CreateLeadInput = {
   phone?: string | null
   message?: string | null
   propertySlug?: string | null
+  origem?: unknown
 }
 
 export async function createLeadFromSite(input: CreateLeadInput) {
-  const notes = [input.message?.trim(), input.propertySlug ? `Imóvel: ${input.propertySlug}` : null]
-    .filter(Boolean)
-    .join(' | ')
+  const notes = montarNotes(input)
 
   const { error } = await supabaseAdmin.from('leads').insert({
     full_name: input.name.trim(),

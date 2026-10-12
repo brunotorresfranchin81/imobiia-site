@@ -1,9 +1,23 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { getOrigem, ORIGEM_LABEL } from '@/lib/origem'
+
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP!
 
-export function WhatsAppButton({ message }: { message?: string }) {
-  const href = message
-    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
+function buildHref(text?: string) {
+  return text
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
     : `https://wa.me/${WHATSAPP_NUMBER}`
+}
+
+export function WhatsAppButton({ message }: { message?: string }) {
+  const [href, setHref] = useState(() => buildHref(message))
+
+  useEffect(() => {
+    const linhaOrigem = `Origem: ${ORIGEM_LABEL[getOrigem()]}`
+    setHref(buildHref(`${message || 'Olá! Gostaria de mais informações.'}\n${linhaOrigem}`))
+  }, [message])
 
   return (
     <a

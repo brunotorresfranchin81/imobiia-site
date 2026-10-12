@@ -18,13 +18,13 @@ export async function POST(request: Request) {
   const body = await request.json()
   if (body.website) return Response.json({ ok: true }) // honeypot
 
-  const { name, email, phone, message, propertySlug } = body
+  const { name, email, phone, message, propertySlug, origem } = body
   if (!name?.trim() || !email?.trim()) {
     return Response.json({ error: 'Nome e email são obrigatórios' }, { status: 400 })
   }
 
   try {
-    await createLeadFromSite({ name, email, phone, message, propertySlug })
+    await createLeadFromSite({ name, email, phone, message, propertySlug, origem })
   } catch (error) {
     console.error(error)
     return Response.json({ error: 'Erro ao registrar contato.' }, { status: 500 })

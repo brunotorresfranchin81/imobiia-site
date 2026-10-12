@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { getOrigem } from '@/lib/origem'
 
 type ContactFormProps = {
   propertySlug?: string
@@ -42,7 +43,7 @@ export function ContactForm({ propertySlug, submitLabel = 'Enviar mensagem' }: C
       const response = await fetch('/api/contato', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, phone, message, propertySlug, website }),
+        body: JSON.stringify({ name, email, phone, message, propertySlug, website, origem: getOrigem() }),
       })
 
       if (!response.ok) {
